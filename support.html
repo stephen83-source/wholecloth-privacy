@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wholecloth · Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #1a1a18;
+      --mid:    #4a4a45;
+      --soft:   #8a8a82;
+      --rule:   #e2e0d8;
+      --bg:     #f9f7f2;
+      --paper:  #ffffff;
+      --gold:   #c17f3e;
+      --gold-l: #f5ede0;
+      --blue:   #3a5f8a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    /* grain */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(249,247,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+      animation: fadeDown 0.5s ease both;
+    }
+
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-brand span { color: var(--gold); }
+
+    .nav-links {
+      display: flex; gap: 28px; list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px; font-weight: 400;
+      color: var(--mid); text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; z-index: 1;
+      padding: 80px 40px 64px;
+      max-width: 760px; margin: 0 auto;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px; display: block;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 400; line-height: 1.15;
+      color: var(--ink); margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 16px; color: var(--mid);
+      max-width: 540px; line-height: 1.8;
+    }
+
+    /* ── CONTACT CARD ── */
+    .contact-strip {
+      position: relative; z-index: 1;
+      max-width: 760px; margin: 0 auto 64px;
+      padding: 0 40px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .contact-card {
+      background: var(--ink);
+      color: #f9f7f2;
+      padding: 36px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+    }
+
+    .contact-card-text p:first-child {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 6px;
+    }
+
+    .contact-card-text p:last-child {
+      font-size: 15px; color: #f9f7f2; margin: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 13px 28px;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .contact-btn:hover {
+      background: #a86c2e;
+      transform: translateY(-1px);
+    }
+
+    /* ── MAIN ── */
+    .main {
+      position: relative; z-index: 1;
+      max-width: 760px; margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); display: block;
+      margin-bottom: 24px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ── FAQ ── */
+    .faq-group {
+      margin-bottom: 56px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .faq-group:nth-child(1) { animation-delay: 0.2s; }
+    .faq-group:nth-child(2) { animation-delay: 0.25s; }
+    .faq-group:nth-child(3) { animation-delay: 0.3s; }
+    .faq-group:nth-child(4) { animation-delay: 0.35s; }
+
+    .faq-group h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 20px;
+    }
+
+    details {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    details:first-of-type { border-top: 1px solid var(--rule); }
+
+    summary {
+      list-style: none;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 0;
+      cursor: pointer;
+      font-size: 15px; font-weight: 400;
+      color: var(--ink);
+      user-select: none;
+      transition: color 0.2s;
+      gap: 16px;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary:hover { color: var(--gold); }
+
+    .summary-icon {
+      width: 22px; height: 22px;
+      border: 1px solid var(--rule);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px; color: var(--gold);
+      transition: transform 0.25s, border-color 0.2s;
+    }
+
+    details[open] .summary-icon {
+      transform: rotate(45deg);
+      border-color: var(--gold);
+    }
+
+    .answer {
+      padding: 0 0 20px 0;
+      font-size: 14.5px; color: var(--mid);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    .answer p { margin-bottom: 10px; }
+    .answer p:last-child { margin-bottom: 0; }
+
+    .answer ol, .answer ul {
+      padding-left: 20px; margin: 10px 0;
+    }
+
+    .answer li { margin-bottom: 6px; }
+
+    .answer code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12.5px;
+      background: var(--gold-l);
+      color: var(--gold);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+
+    /* ── TIPS GRID ── */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 56px;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .tip-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 24px;
+    }
+
+    .tip-icon {
+      font-size: 24px; margin-bottom: 12px; display: block;
+    }
+
+    .tip-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 8px;
+    }
+
+    .tip-card p {
+      font-size: 13.5px; color: var(--mid); margin: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--rule);
+      max-width: 760px; margin: 0 auto;
+      padding: 36px 40px 60px;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 16px;
+      animation: fadeUp 0.5s 0.4s ease both;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--ink);
+    }
+
+    .footer-links {
+      display: flex; gap: 24px; list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 12px; color: var(--soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 12px; color: var(--soft);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero, .contact-strip, .main { padding-left: 24px; padding-right: 24px; }
+      .hero { padding-top: 48px; }
+      .contact-card { padding: 28px 24px; }
+      .tips-grid { grid-template-columns: 1fr; }
+      footer { padding: 28px 24px 48px; flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">Whole<span>cloth</span></a>
+  <ul class="nav-links">
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#pro">Pro & Billing</a></li>
+    <li><a href="#icloud">iCloud</a></li>
+    <li><a href="#contact-section">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-eyebrow">Wholecloth · Support</span>
+  <h1>How can we<br/><em>help you?</em></h1>
+  <p>Find answers to common questions below, or reach out directly — we're a small team and read every message personally.</p>
+</div>
+
+<!-- CONTACT CARD -->
+<div class="contact-strip" id="contact-section">
+  <div class="contact-card">
+    <div class="contact-card-text">
+      <p>Direct Support</p>
+      <p>Can't find what you need? We'll get back to you within 24 hours.</p>
+    </div>
+    <a class="contact-btn" href="mailto:656htt8zth@privaterelay.appleid.com">Email Support →</a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- TIPS GRID -->
+  <span class="section-label">Quick Tips</span>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <span class="tip-icon">✂️</span>
+      <h3>Quotes → Orders</h3>
+      <p>Once a client approves a quote, convert it to an Order in one tap to start tracking payments.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">☁️</span>
+      <h3>iCloud Sync</h3>
+      <p>Enable iCloud in Settings to keep your data backed up and in sync across your Apple devices.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">📄</span>
+      <h3>PDF Sharing</h3>
+      <p>Share professional quote PDFs directly from the Quote screen using the iOS share sheet.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🔒</span>
+      <h3>Unlock Pro</h3>
+      <p>Upgrade to Pro for unlimited clients, quotes, expenses, and photo attachments — one-time purchase.</p>
+    </div>
+  </div>
+
+  <!-- FAQ: Getting Started -->
+  <div class="faq-group" id="getting-started">
+    <span class="section-label">Getting Started</span>
+
+    <details>
+      <summary>How do I create my first quote? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Tap <strong>Quotes</strong> in the bottom tab bar, then the <strong>+</strong> button in the top right. You'll be prompted to select or create a client first, then add project details including size, fabric, materials, and pricing. You can add multiple line items (projects) to a single quote.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I convert a quote to an order? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Open the quote, scroll to the bottom, and tap <strong>Convert to Order</strong>. The order will carry over all project details and pricing. You can then mark deposits received and track the balance due as the project progresses.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I mark a deposit as received? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Open the Order, find the <strong>Pricing & Payment</strong> section, and tap <strong>Mark Received</strong> next to the deposit amount. You'll be asked to confirm the amount and date received. This updates the Balance Due automatically.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I share a quote as a PDF with my client? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Open a Quote and scroll to the very bottom — tap <strong>Share Quote PDF</strong>. This generates a formatted PDF and opens the standard iOS share sheet, so you can send it via Messages, Mail, AirDrop, or any app on your phone.</p>
+        <p>Note: PDF export is a Pro feature. Upgrade once to unlock it permanently.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Can I add my business name and logo to quotes? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Yes. Go to <strong>More → Business Settings</strong> to set your business name, tagline, and contact information. These appear on generated PDFs. Logo support is planned for a future update.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- FAQ: Pro & Billing -->
+  <div class="faq-group" id="pro">
+    <span class="section-label">Pro & Billing</span>
+
+    <details>
+      <summary>What's included in Wholecloth Pro? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Pro unlocks the full app with no limits:</p>
+        <ul>
+          <li>Unlimited clients, quotes, and orders</li>
+          <li>Expense tracking</li>
+          <li>Photo attachments on projects and expenses</li>
+          <li>PDF export and sharing</li>
+        </ul>
+        <p>The free version allows up to 3 clients, 3 quotes, and 3 orders so you can try before you buy.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Is Pro a subscription or a one-time purchase? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Wholecloth Pro is a <strong>one-time purchase</strong> — pay once, own it forever. There are no recurring charges, no monthly fees, and no expiry. Future feature updates are included at no additional cost.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I restore my Pro purchase on a new device? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Tap <strong>More → Restore Purchase</strong> in the app. Make sure you're signed into the same Apple ID you used when you originally purchased Pro. The restore happens instantly and at no charge — Apple tracks your purchase history.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>I was charged but the app still shows free limits. What do I do? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>First, try <strong>More → Restore Purchase</strong>. If that doesn't resolve it, try force-closing and reopening the app. If the issue persists, email us at <a href="mailto:656htt8zth@privaterelay.appleid.com" style="color:var(--gold);">support</a> with your Apple ID (not your password) and we'll help sort it out right away.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Can I get a refund? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Refunds are handled by Apple directly. Visit <a href="https://reportaproblem.apple.com" target="_blank" style="color:var(--gold);">reportaproblem.apple.com</a>, sign in with your Apple ID, find the Wholecloth purchase, and request a refund. Apple typically processes these within a few days.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- FAQ: iCloud & Data -->
+  <div class="faq-group" id="icloud">
+    <span class="section-label">iCloud & Your Data</span>
+
+    <details>
+      <summary>How does iCloud sync work in Wholecloth? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Wholecloth uses Apple's CloudKit framework to sync your data through your personal iCloud account. If you have iCloud enabled, your clients, quotes, orders, and expenses will automatically stay in sync across any iPhone or iPad signed into the same Apple ID.</p>
+        <p>We never see or have access to your data — it lives in your iCloud account only.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>My data isn't syncing between devices. How do I fix it? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Try these steps in order:</p>
+        <ol>
+          <li>Make sure both devices are signed into the <strong>same Apple ID</strong></li>
+          <li>Check that iCloud is enabled: <code>Settings → [Your Name] → iCloud → Wholecloth → On</code></li>
+          <li>Ensure both devices have an active internet connection</li>
+          <li>Force-close and reopen the app on both devices</li>
+          <li>If still not syncing, toggle iCloud off and back on for the app in Settings</li>
+        </ol>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I back up or export my data? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>If iCloud is enabled, your data is automatically backed up to your iCloud account continuously. You can also generate PDF quotes and orders and save them to Files, Mail, or any other app via the share sheet as a manual record.</p>
+        <p>A full CSV export feature is on our roadmap for a future update.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I delete all my data? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Deleting the app from your iPhone removes all locally stored data permanently. To also remove iCloud-synced data, go to:</p>
+        <p><code>Settings → [Your Name] → iCloud → Manage Storage → Wholecloth → Delete Data</code></p>
+        <p>This cannot be undone, so make sure you have any PDFs or records you want to keep before proceeding.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- FAQ: Troubleshooting -->
+  <div class="faq-group">
+    <span class="section-label">Troubleshooting</span>
+
+    <details>
+      <summary>The app crashed or something isn't working. What should I do? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>First, try force-closing the app (swipe up from the Home Screen and swipe Wholecloth away) and reopening it. If the issue persists:</p>
+        <ol>
+          <li>Check that you're on the latest version: <strong>App Store → Updates</strong></li>
+          <li>Restart your iPhone</li>
+          <li>If still happening, email us with a description of what you were doing when it crashed — we'll investigate promptly</li>
+        </ol>
+      </div>
+    </details>
+
+    <details>
+      <summary>I accidentally deleted a client or quote. Can I recover it? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Unfortunately, deletions are permanent and cannot be undone within the app. If you have iCloud sync enabled, deleting on one device will sync the deletion to all devices.</p>
+        <p>We have undo/trash functionality on our roadmap for a future update.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Can I use Wholecloth on iPad? <span class="summary-icon">+</span></summary>
+      <div class="answer">
+        <p>Yes — Wholecloth runs on iPad in compatibility mode. A native iPad layout optimized for the larger screen is planned for a future update.</p>
+      </div>
+    </details>
+  </div>
+
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Wholecloth</div>
+  <ul class="footer-links">
+    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+    <li><a href="mailto:656htt8zth@privaterelay.appleid.com">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Selvedge App</p>
+</footer>
+
+<script>
+  // Smooth open/close animation for details
+  document.querySelectorAll('details').forEach(el => {
+    el.addEventListener('toggle', () => {
+      if (el.open) {
+        const answer = el.querySelector('.answer');
+        answer.style.animation = 'none';
+        answer.offsetHeight;
+        answer.style.animation = 'fadeUp 0.25s ease both';
+      }
+    });
+  });
+
+  // Highlight active nav link on scroll
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--gold)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
